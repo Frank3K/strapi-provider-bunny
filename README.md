@@ -51,7 +51,7 @@ BUNNY_PULL_ZONE: Pull Zone URL.
 BUNNY_UPLOAD_PATH: Upload path, optional.  Should be in the form 'path/subdir' without leading and trailing slashes.
 ```
 
-Enter Pull Zone URL without trailing slash – `https://<pull-zone-name>.b-cdn.net`.\
+Enter Pull Zone URL without trailing slash – `<pull-zone-name>.b-cdn.net`.\
 Optionally add Storage Endpoint Url without trailing slash ([read more](https://docs.bunny.net/reference/storage-api#storage-endpoints))
 
 ### Security Middleware Configuration
@@ -75,14 +75,14 @@ module.exports = [
             'data:',
             'blob:',
             'market-assets.strapi.io',
-            process.env.BUNNY_PULL_ZONE,
+            `https://${process.env.BUNNY_PULL_ZONE}`,
           ],
           'media-src': [
             "'self'",
             'data:',
             'blob:',
             'market-assets.strapi.io',
-            process.env.BUNNY_PULL_ZONE,
+            `https://${process.env.BUNNY_PULL_ZONE}`,
           ],
           upgradeInsecureRequests: null,
         },
