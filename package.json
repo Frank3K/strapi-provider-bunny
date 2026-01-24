@@ -34,7 +34,8 @@
   },
   "dependencies": {
     "@strapi/utils": "^5.x.x",
-    "axios": "^1.13.2"
+    "axios": "^1.13.2",
+    "mime": "^4.1.0"
   },
   "author": "Jorge Zambrano <jorge@nexide.co> (https://nexide.co)",
   "license": "MIT",
