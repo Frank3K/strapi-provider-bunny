@@ -125,10 +125,14 @@ const init = ({
    * @returns {Promise<void>} A promise that resolves when the file is deleted.
    */
   const deleteFile = async (file) => {
+    if (!file.url) {
+      return;
+    }
+
     try {
-      const path = upload_path ? `${upload_path}/` : '';
+      const filePath = file.url.replace(`https://${pull_zone}/`, '');
       const response = await axios.delete(
-        `https://${hostname}/${storage_zone}/${path}${file.hash}${file.ext}`,
+        `https://${hostname}/${storage_zone}/${filePath}`,
         {
           headers: {
             AccessKey: api_key,
