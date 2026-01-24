@@ -6,7 +6,7 @@
         "targets": {
           "node": "20.9.0"
         },
-        "modules": "commonjs"
+        "modules": false
       }
     ],
     "minify"
