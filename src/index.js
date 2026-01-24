@@ -76,47 +76,6 @@ const init = ({
   };
 
   /**
-   * Downloads a file from Bunny CDN.
-   *
-   * @param {Object} file - The file object to download.
-   * @param {string} file.hash - The hash of the file.
-   * @param {string} file.ext - The file extension.
-   * @returns {Promise<Object>} A promise that resolves with the downloaded file data.
-   */
-  const download = async (file) => {
-    try {
-      const path = upload_path ? `${upload_path}/` : '';
-
-      const response = await axios.get(
-        `https://${hostname}/${storage_zone}/${path}${file.hash}${file.ext}`,
-        {
-          headers: {
-            AccessKey: api_key,
-          },
-          responseType: 'arraybuffer', // Para manejar diferentes tipos de archivos
-        },
-      );
-
-      const type = mime.getType(file.ext);
-      let body;
-
-      if (/^text(\/|$)/.test(type)) {
-        body = response.data.toString('utf8');
-      } else if (type === 'application/json') {
-        body = JSON.parse(response.data.toString('utf8'));
-      } else {
-        body = Buffer.from(response.data);
-      }
-
-      return { type, body };
-    } catch (error) {
-      throw new ApplicationError(
-        `Error downloading from Bunny.net: ${error.message}`,
-      );
-    }
-  };
-
-  /**
    * Deletes a file from Bunny CDN.
    *
    * @param {Object} file - The file object to delete.
@@ -156,7 +115,6 @@ const init = ({
 
   return {
     upload,
-    download,
     delete: deleteFile,
     uploadStream: upload,
   };
